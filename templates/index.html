@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>ScanPay</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>Pneumonia Diagnosing</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <h2><small>A Deep Learning Based Pneumonia Diagnosing Agent</small></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <p><b>Upload</b> the X-ray image you want to detect now</p>
+            <div class="col"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-md-6">
+                <form id="form card">
+                    <div class="form-group card-body">
+                        <input type='file' id="xRay">
+                        <img id="xRayPreview" src="" alt="" style="width: 100%; height: auto;">
+                    </div>
+                    <div class="form-group card-body">
+                        <button id="detect" class="btn btn-secondary btn-block">Detect</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div  id="processing" class="row" style="display: none;">
+            <div class="col"></div>
+            <div class="col-md-6">
+                <div class="alert alert-info" role="alert">
+                    <div class="spinner-grow text-info" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>Diagnosing</div>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row" id="fail" style="display: none;">
+            <div class="col"></div>
+            <div class="col-md-6">
+                <div class="alert alert-warning" role="alert">Fail to diagnose</div>
+            </div>
+            <div class="col"></div>
+        </div>
+        <div  id="success" class="row" style="display: none;">
+            <div class="col"></div>
+            <div class="col-md-6">
+                <div id="normal" class="alert alert-success" role="alert">NORMAL</div>
+                <div id="pneumonia" class="alert alert-danger" role="alert">PNEUMONIA</div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $('#detect').on('click', ev => {
+                let formData = new FormData();
+                let image = $('#xRay')[0].files;
+                formData.append('image', image[0], image[0].name);
+                $('#processing').show();
+                $('#fail').hide();
+                $('#success').hide();
+                $.ajax({
+                    url: '/api/diagnose',
+                    type: 'POST',
+                    data: formData,
+                    success: res => {
+                        $('#processing').hide();
+                        if (res['status'] === 'fail') {
+                            $('#fail').show();
+                        } else {
+                            $('#success').show();
+                            if (res['label'] === 1) {
+                                $('#pneumonia').hide()
+                            } else {
+                                $('#normal').hide()
+                            }
+                        }
+                    },
+                    processData: false,
+                    contentType: false,
+                });
+                ev.preventDefault();
+            });
+            $('#xRay').change(function () {
+                let reader = new FileReader();
+                reader.onload = ev => $("#xRayPreview").attr('src', ev.target.result);
+                reader.readAsDataURL(this.files[0]);
+            });
+        });
+    </script>
+</body>
+</html>
