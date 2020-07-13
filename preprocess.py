@@ -18,7 +18,7 @@ if __name__ == '__main__':
             else:
                 top = ((height - width) // 2)
                 image = image[top:top + width, :]
-            image = cv.resize(image, (64, 64), interpolation=cv.INTER_CUBIC)
+            image = cv.resize(image, (64, 64), interpolation=cv.INTER_AREA)
             cv.imwrite(os.path.join('data', 'XRay', dataset, label, filename), image)
         except:
             pass
