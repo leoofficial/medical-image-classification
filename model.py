@@ -10,12 +10,12 @@ class STN(nn.Module):
         self.localization = nn.Sequential(
             nn.Sequential(
                 nn.Conv2d(1, 8, 7),
-                nn.MaxPool2d(2, stride=2),
+                nn.MaxPool2d(2, 2),
                 nn.ReLU(True)
             ),
             nn.Sequential(
                 nn.Conv2d(8, 10, 5),
-                nn.MaxPool2d(2, stride=2),
+                nn.MaxPool2d(2, 2),
                 nn.ReLU(True)
             )
         )
