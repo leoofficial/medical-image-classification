@@ -6,8 +6,8 @@ from bokeh.plotting import figure, output_file, show
 from sklearn.manifold import TSNE
 
 if __name__ == '__main__':
-    # dataset = 'train'
-    dataset = 'test'
+    dataset = 'train'
+    # dataset = 'test'
     X = []
     y = []
 
@@ -33,8 +33,8 @@ if __name__ == '__main__':
 
     colors = ['green', 'red']
 
-    # output_file('figure/train_data.html', title='Training Data')
-    output_file('figure/test_data.html', title='Testing Data')
+    output_file('figure/train_data.html', title='Training Data')
+    # output_file('figure/test_data.html', title='Testing Data')
     p = figure()
     p.scatter(X_embedded[:, 0], X_embedded[:, 1], radius=0.01, fill_color=[colors[c] for c in y], fill_alpha=0.5,
               line_color=None)

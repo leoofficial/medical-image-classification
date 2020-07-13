@@ -1,3 +1,6 @@
-Overall Accuracy : 78.205%
+Train
+Accuracy of NORMAL : 97.837%
+Accuracy of PNEUMONIA : 98.735%
+Test
 Accuracy of NORMAL : 45.726%
 Accuracy of PNEUMONIA : 98.974%
