@@ -6,6 +6,6 @@ A Deep Learning Based Pneumonia Diagnosing Agent
 
 [Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia)
 
-### Video Intro
+### Demo
 
-[Not Finish Yet](https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia)
+[Video](https://youtu.be/4jKV0-X_V84)
