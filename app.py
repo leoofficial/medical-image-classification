@@ -9,6 +9,7 @@ from flask import Flask, json, render_template, request
 
 from model import COVID19Net
 
+
 model = COVID19Net()
 model.load_state_dict(torch.load('./models/covid19_net.pth'))
 

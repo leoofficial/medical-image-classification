@@ -5,6 +5,7 @@ import torchvision.transforms as transforms
 from model import COVID19Net
 import os
 
+
 if __name__ == '__main__':
 
     transform = transforms.Compose([transforms.Grayscale(), transforms.ToTensor()])
