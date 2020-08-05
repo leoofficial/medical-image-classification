@@ -10,7 +10,7 @@ from flask import Flask, json, render_template, request
 from model import COVID19Net
 
 model = COVID19Net()
-model.load_state_dict(torch.load('./model/covid19_net.pth'))
+model.load_state_dict(torch.load('./models/covid19_net.pth'))
 
 app = Flask(__name__)
 
@@ -26,7 +26,7 @@ def clear_files(func):
 
 
 @app.route('/')
-def hello_world():
+def index():
     if not os.path.exists(os.path.join('static', 'images')):
         os.makedirs(os.path.join('static', 'images'))
     return render_template('index.html')

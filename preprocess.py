@@ -3,6 +3,7 @@ import os
 import cv2 as cv
 
 if __name__ == '__main__':
+
     dataset = 'train'
     # dataset = 'test'
     label = 'NORMAL'

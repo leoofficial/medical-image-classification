@@ -6,6 +6,7 @@ from bokeh.plotting import figure, output_file, show
 from sklearn.manifold import TSNE
 
 if __name__ == '__main__':
+
     dataset = 'train'
     # dataset = 'test'
     X = []
